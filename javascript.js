@@ -50,28 +50,43 @@ $(document).ready(function(){
             processData: false,
             contentType: false,
             success:function(notification){
+                //Alors, j'ajoute aussi un message en dessous du form en créant des variables pour ensuite les appends
+                //Comme ça tu as le choix pour la note s'il fallait faire une alerte ou append :)
+                let okjax = $('<p>').text('Succès total !')
+                let nomjax = $('<p>').text('Nom requis')
+                let prenomjax = $('<p>').text('Prénom requis')
+                let emailjax = $('<p>').text('Email requis')
+                let sujetjax = $('<p>').text('Sujet requis')
+                let messagejax = $('<p>').text('Message requis')
                 //J'ai choisi de faire avec If et Else if, mais, le switch était tout aussi envisageable
                 //et peut être plus simple, mais on fait avec les moyens du bord
-                //On affiche le message en alert parce que c'est plus drôle
+                //On affiche le message en alert parce que c'est plus drôle mais aussi en append parce que
+                //j'étais pas sûr de la consigne et au moins j'ai fait les deux pour avoir les points ahah !
                 //Et ensuite, on change la couleur des bordures pour les erreurs avec le .css grâce à jquery
                 //Enfin, on disable les champs si le formulaire est complété comme il faut sans oubli de la part de notre cher utilisateur
                if(notification == 1){
+                $('form[name="login"]').append(okjax)
                 alert('Tout est ok ! Merci pour tes infos gratuites !')
                 $('#nom ,#prenom,#email,#sujet,#message ,#submit').attr('disabled','disabled');
                }else if(notification == 2){
                     alert('Entre ton petit nom, mon Loulou ')
+                    $('form[name="login"]').append(nomjax)
                     $('input[name="nom"]').css('border','3px solid red');
                }else if (notification == 3){
                 alert('Cette fois, c\' est ton prenom qu\' il manque !');
+                $('form[name="login"]').append(prenomjax)
                 $('input[name="prenom"]').css('border','3px solid red')
                }else if (notification == 4){
                 alert('Hé ho, tu as oublié ton email !')
+                $('form[name="login"]').append(emailjax)
                 $('input[name="email"]').css('border','3px solid red')
                }else if (notification == 5){
                     alert('C\'est quoi ton sujet ?')
+                    $('form[name="login"]').append(sujetjax)
                     $('input[name="sujet"]').css('border','3px solid red')
                }else if(notification == 6){
                 alert('Oublie pas de nous laisser un message après le bip');
+                $('form[name="login"]').append(messagejax)
                 $('textarea[name="message"]').css('border','3px solid red')
                }
             }
